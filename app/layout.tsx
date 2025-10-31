@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Tricharts Playground",
-  description: "A playground for the 3D charting library Tricharts",
+  title: "TriCharts Playground",
+  description: "A playground for the 3D charting library TriCharts",
 }
 
 export default function RootLayout({

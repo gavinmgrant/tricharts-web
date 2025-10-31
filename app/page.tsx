@@ -3,23 +3,29 @@
 import Link from "next/link"
 import { useState } from "react"
 import { Bar3DChart } from "tricharts"
+import { SquareArrowOutUpRightIcon } from "lucide-react"
 
 import Sidebar from "@/components/sidebar"
 
 export default function Home() {
-  const [rawInput, setRawInput] = useState(
+  const [rawInput, setRawInput] = useState<string>(
     ["22, 19, 13, 5, 2", "16, 14, 10, 3, 4"].join("\n")
   )
   const [data, setData] = useState<number[][]>([
     [22, 19, 13, 5, 2],
     [16, 14, 10, 3, 4],
   ])
-  const [labels, setLabels] = useState({
+  const [labels, setLabels] = useState<{
+    xLabel: string
+    yLabel: string
+    zLabel: string
+  }>({
     xLabel: "",
     yLabel: "",
     zLabel: "",
   })
-  const [barSpacing, setBarSpacing] = useState(1)
+  const [barSpacing, setBarSpacing] = useState<number | string>(1)
+  const [showGrid, setShowGrid] = useState<boolean>(true)
 
   const parseInput = (text: string): number[][] => {
     const lines = text
@@ -62,32 +68,43 @@ export default function Home() {
               handleRawChange={handleRawChange}
               barSpacing={barSpacing}
               setBarSpacing={setBarSpacing}
+              showGrid={showGrid}
+              setShowGrid={setShowGrid}
             />
           </div>
 
-          <div className="flex flex-col gap-1 items-start text-sm">
+          <div className="flex flex-col gap-2 items-start text-sm">
             <Link
               href="https://www.npmjs.com/package/tricharts"
               target="_blank"
+              className="w-full"
             >
-              npm package
+              <div className="flex items-center justify-between bg-zinc-100 rounded-md px-3 py-2 cursor-pointer hover:bg-zinc-200 transition-colors">
+                <p>npm package</p>
+                <SquareArrowOutUpRightIcon className="size-4" />
+              </div>
             </Link>
             <Link
               href="https://github.com/gavinmgrant/tricharts"
               target="_blank"
+              className="w-full"
             >
-              GitHub repository
+              <div className="flex items-center justify-between bg-zinc-100 rounded-md px-3 py-2 cursor-pointer hover:bg-zinc-200 transition-colors">
+                <p>GitHub repository</p>
+                <SquareArrowOutUpRightIcon className="size-4" />
+              </div>
             </Link>
           </div>
         </div>
 
-        <div className="border border-slate-200 rounded-md w-full h-full my-4 lg:my-0">
+        <div className="border border-slate-200 rounded-md w-full h-[400px] lg:h-full mb-6 lg:mb-0">
           <Bar3DChart
             data={data}
             xLabel={labels.xLabel}
             yLabel={labels.yLabel}
             zLabel={labels.zLabel}
-            barSpacing={barSpacing}
+            barSpacing={Number(barSpacing)}
+            showGrid={showGrid}
           />
         </div>
       </main>

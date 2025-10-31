@@ -9,6 +9,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import { Switch } from "@/components/ui/switch"
 import { Textarea } from "@/components/ui/textarea"
 
 interface SidebarProps {
@@ -20,8 +21,10 @@ interface SidebarProps {
   }) => void
   rawInput: string
   handleRawChange: (value: string) => void
-  barSpacing: number
-  setBarSpacing: (spacing: number) => void
+  barSpacing: number | string
+  setBarSpacing: (spacing: number | string) => void
+  showGrid: boolean
+  setShowGrid: (showGrid: boolean) => void
 }
 
 export default function Sidebar({
@@ -31,6 +34,8 @@ export default function Sidebar({
   handleRawChange,
   barSpacing,
   setBarSpacing,
+  showGrid,
+  setShowGrid,
 }: SidebarProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLabels({
@@ -39,7 +44,14 @@ export default function Sidebar({
     })
   }
   const handleBarSpacingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value === "") {
+      setBarSpacing("")
+      return
+    }
     setBarSpacing(Number(e.target.value))
+  }
+  const handleShowGridChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setShowGrid(e.target.checked)
   }
 
   return (
@@ -90,6 +102,17 @@ export default function Sidebar({
               value={barSpacing}
               onChange={handleBarSpacingChange}
               step={0.25}
+              min={0}
+              max={10}
+            />
+          </FieldContent>
+        </Field>
+        <Field>
+          <FieldLabel>Show grid</FieldLabel>
+          <FieldContent>
+            <Switch
+              checked={showGrid}
+              onCheckedChange={(checked: boolean) => setShowGrid(checked)}
             />
           </FieldContent>
         </Field>
