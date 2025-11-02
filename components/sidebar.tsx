@@ -1,7 +1,5 @@
 "use client"
 
-import * as React from "react"
-
 import {
   Field,
   FieldContent,
@@ -13,18 +11,32 @@ import { Switch } from "@/components/ui/switch"
 import { Textarea } from "@/components/ui/textarea"
 
 interface SidebarProps {
-  labels: { xLabel: string; yLabel: string; zLabel: string }
+  labels: {
+    xLabel: string
+    yLabel: string
+    zLabel: string
+    xLabels: string[]
+    zLabels: string[]
+  }
   setLabels: (labels: {
     xLabel: string
     yLabel: string
     zLabel: string
+    xLabels: string[]
+    zLabels: string[]
   }) => void
   rawInput: string
   handleRawChange: (value: string) => void
+  rawXLabels: string
+  rawZLabels: string
   barSpacing: number | string
   setBarSpacing: (spacing: number | string) => void
   showGrid: boolean
   setShowGrid: (showGrid: boolean) => void
+  showLabels: boolean
+  setShowLabels: (showLabels: boolean) => void
+  handleLabelsChange: (value: string) => void
+  handleZLabelsChange: (value: string) => void
 }
 
 export default function Sidebar({
@@ -32,10 +44,16 @@ export default function Sidebar({
   setLabels,
   rawInput,
   handleRawChange,
+  rawXLabels,
+  rawZLabels,
   barSpacing,
   setBarSpacing,
   showGrid,
   setShowGrid,
+  showLabels,
+  setShowLabels,
+  handleLabelsChange,
+  handleZLabelsChange,
 }: SidebarProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLabels({
@@ -50,15 +68,61 @@ export default function Sidebar({
     }
     setBarSpacing(Number(e.target.value))
   }
-  const handleShowGridChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setShowGrid(e.target.checked)
-  }
 
   return (
-    <aside id="chart-form" className="w-full space-y-4">
-      <FieldGroup className="space-y-2">
+    <aside id="chart-form" className="w-full space-y-3">
+      <Field>
+        <FieldLabel>Data rows</FieldLabel>
+        <FieldContent>
+          <Textarea
+            className="min-h-20"
+            value={rawInput}
+            onChange={(e) => handleRawChange(e.target.value)}
+            placeholder={["22, 16, 10, 6, 2", "12, 10, 8, 6, 4"].join("\n")}
+          />
+          <p className="text-xs text-muted-foreground mt-1">
+            Enter multiple rows; each row becomes a series. Values can be comma
+            or space separated.
+          </p>
+        </FieldContent>
+      </Field>
+      <Field>
+        <FieldLabel>Labels for x-axis</FieldLabel>
+        <FieldContent>
+          <Textarea
+            className="min-h-20"
+            value={rawXLabels}
+            onChange={(e) => handleLabelsChange(e.target.value)}
+            placeholder={[
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+            ].join("\n")}
+          />
+          <p className="text-xs text-muted-foreground mt-1">
+            Enter one label per line.
+          </p>
+        </FieldContent>
+      </Field>
+      <Field>
+        <FieldLabel>Labels for z-axis</FieldLabel>
+        <FieldContent>
+          <Textarea
+            className="min-h-20"
+            value={rawZLabels}
+            onChange={(e) => handleZLabelsChange(e.target.value)}
+            placeholder={["Week 1", "Week 2"].join("\n")}
+          />
+          <p className="text-xs text-muted-foreground mt-1">
+            Enter one label per line.
+          </p>
+        </FieldContent>
+      </Field>
+      <FieldGroup className="grid grid-cols-1 sm:grid-cols-3 gap-2">
         <Field>
-          <FieldLabel>Label for x-axis</FieldLabel>
+          <FieldLabel>Label x-axis</FieldLabel>
           <FieldContent>
             <Input
               type="text"
@@ -70,7 +134,7 @@ export default function Sidebar({
           </FieldContent>
         </Field>
         <Field>
-          <FieldLabel>Label for y-axis</FieldLabel>
+          <FieldLabel>Label y-axis</FieldLabel>
           <FieldContent>
             <Input
               type="text"
@@ -82,7 +146,7 @@ export default function Sidebar({
           </FieldContent>
         </Field>
         <Field>
-          <FieldLabel>Label for z-axis</FieldLabel>
+          <FieldLabel>Label z-axis</FieldLabel>
           <FieldContent>
             <Input
               type="text"
@@ -93,6 +157,8 @@ export default function Sidebar({
             />
           </FieldContent>
         </Field>
+      </FieldGroup>
+      <FieldGroup className="grid grid-cols-3 gap-2">
         <Field>
           <FieldLabel>Bar spacing</FieldLabel>
           <FieldContent>
@@ -108,7 +174,7 @@ export default function Sidebar({
           </FieldContent>
         </Field>
         <Field>
-          <FieldLabel>Show grid</FieldLabel>
+          <FieldLabel>Show grid lines</FieldLabel>
           <FieldContent>
             <Switch
               checked={showGrid}
@@ -116,26 +182,16 @@ export default function Sidebar({
             />
           </FieldContent>
         </Field>
+        <Field>
+          <FieldLabel>Show data labels</FieldLabel>
+          <FieldContent>
+            <Switch
+              checked={showLabels}
+              onCheckedChange={(checked: boolean) => setShowLabels(checked)}
+            />
+          </FieldContent>
+        </Field>
       </FieldGroup>
-      <Field>
-        <FieldLabel>Data rows</FieldLabel>
-        <FieldContent>
-          <Textarea
-            className="min-h-20"
-            value={rawInput}
-            onChange={(e) => handleRawChange(e.target.value)}
-            placeholder={[
-              "12, 19, 3, 5, 2",
-              "22, 12, 15, 5, 9",
-              "8, 14, 22, 7, 11",
-            ].join("\n")}
-          />
-          <p className="text-xs text-muted-foreground mt-2">
-            Enter multiple rows; each row becomes a series. Values can be comma
-            or space separated.
-          </p>
-        </FieldContent>
-      </Field>
     </aside>
   )
 }
