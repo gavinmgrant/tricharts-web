@@ -45,6 +45,9 @@ export default function Home() {
   const [barSpacing, setBarSpacing] = useState<number | string>(1)
   const [showGrid, setShowGrid] = useState<boolean>(true)
   const [showLabels, setShowLabels] = useState<boolean>(true)
+  const [colorScheme, setColorScheme] = useState<
+    "blue" | "green" | "red" | "purple" | "orange" | "rainbow" | "random"
+  >("blue")
 
   const parseInput = (text: string): number[][] => {
     const lines = text
@@ -115,10 +118,12 @@ export default function Home() {
                 setShowGrid={setShowGrid}
                 showLabels={showLabels}
                 setShowLabels={setShowLabels}
+                colorScheme={colorScheme}
+                setColorScheme={setColorScheme}
               />
             </div>
 
-            <div className="flex flex-col gap-2 items-start text-sm">
+            <div className="grid grid-cols-2 gap-2 text-sm">
               <Link
                 href="https://www.npmjs.com/package/tricharts"
                 target="_blank"
@@ -183,6 +188,7 @@ export default function Home() {
             barSpacing={Number(barSpacing)}
             showGrid={showGrid}
             showLabels={showLabels}
+            colorScheme={colorScheme}
           />
         </div>
       </main>

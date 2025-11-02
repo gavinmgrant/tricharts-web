@@ -7,6 +7,13 @@ import {
   FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
 import { Textarea } from "@/components/ui/textarea"
 
@@ -37,6 +44,24 @@ interface SidebarProps {
   setShowLabels: (showLabels: boolean) => void
   handleLabelsChange: (value: string) => void
   handleZLabelsChange: (value: string) => void
+  colorScheme:
+    | "blue"
+    | "green"
+    | "red"
+    | "purple"
+    | "orange"
+    | "rainbow"
+    | "random"
+  setColorScheme: (
+    scheme:
+      | "blue"
+      | "green"
+      | "red"
+      | "purple"
+      | "orange"
+      | "rainbow"
+      | "random"
+  ) => void
 }
 
 export default function Sidebar({
@@ -54,6 +79,8 @@ export default function Sidebar({
   setShowLabels,
   handleLabelsChange,
   handleZLabelsChange,
+  colorScheme,
+  setColorScheme,
 }: SidebarProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLabels({
@@ -192,6 +219,39 @@ export default function Sidebar({
           </FieldContent>
         </Field>
       </FieldGroup>
+      <Field>
+        <FieldLabel>Color scheme</FieldLabel>
+        <FieldContent>
+          <Select
+            value={colorScheme}
+            onValueChange={(value) =>
+              setColorScheme(
+                value as
+                  | "blue"
+                  | "green"
+                  | "red"
+                  | "purple"
+                  | "orange"
+                  | "rainbow"
+                  | "random"
+              )
+            }
+          >
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Select color scheme" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="blue">Blue</SelectItem>
+              <SelectItem value="green">Green</SelectItem>
+              <SelectItem value="red">Red</SelectItem>
+              <SelectItem value="purple">Purple</SelectItem>
+              <SelectItem value="orange">Orange</SelectItem>
+              <SelectItem value="rainbow">Rainbow</SelectItem>
+              <SelectItem value="random">Random</SelectItem>
+            </SelectContent>
+          </Select>
+        </FieldContent>
+      </Field>
     </aside>
   )
 }
