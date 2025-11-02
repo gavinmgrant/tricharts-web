@@ -185,7 +185,7 @@ export default function Sidebar({
           </FieldContent>
         </Field>
       </FieldGroup>
-      <FieldGroup className="grid grid-cols-3 gap-2">
+      <FieldGroup className="grid grid-cols-2 gap-2">
         <Field>
           <FieldLabel>Bar spacing</FieldLabel>
           <FieldContent>
@@ -200,6 +200,42 @@ export default function Sidebar({
             />
           </FieldContent>
         </Field>
+
+        <Field>
+          <FieldLabel>Color scheme</FieldLabel>
+          <FieldContent>
+            <Select
+              value={colorScheme}
+              onValueChange={(value) =>
+                setColorScheme(
+                  value as
+                    | "blue"
+                    | "green"
+                    | "red"
+                    | "purple"
+                    | "orange"
+                    | "rainbow"
+                    | "random"
+                )
+              }
+            >
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select color scheme" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="blue">Blue</SelectItem>
+                <SelectItem value="green">Green</SelectItem>
+                <SelectItem value="red">Red</SelectItem>
+                <SelectItem value="purple">Purple</SelectItem>
+                <SelectItem value="orange">Orange</SelectItem>
+                <SelectItem value="rainbow">Rainbow</SelectItem>
+                <SelectItem value="random">Random</SelectItem>
+              </SelectContent>
+            </Select>
+          </FieldContent>
+        </Field>
+      </FieldGroup>
+      <FieldGroup className="grid grid-cols-2 gap-2">
         <Field>
           <FieldLabel>Show grid lines</FieldLabel>
           <FieldContent>
@@ -219,39 +255,6 @@ export default function Sidebar({
           </FieldContent>
         </Field>
       </FieldGroup>
-      <Field>
-        <FieldLabel>Color scheme</FieldLabel>
-        <FieldContent>
-          <Select
-            value={colorScheme}
-            onValueChange={(value) =>
-              setColorScheme(
-                value as
-                  | "blue"
-                  | "green"
-                  | "red"
-                  | "purple"
-                  | "orange"
-                  | "rainbow"
-                  | "random"
-              )
-            }
-          >
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select color scheme" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="blue">Blue</SelectItem>
-              <SelectItem value="green">Green</SelectItem>
-              <SelectItem value="red">Red</SelectItem>
-              <SelectItem value="purple">Purple</SelectItem>
-              <SelectItem value="orange">Orange</SelectItem>
-              <SelectItem value="rainbow">Rainbow</SelectItem>
-              <SelectItem value="random">Random</SelectItem>
-            </SelectContent>
-          </Select>
-        </FieldContent>
-      </Field>
     </aside>
   )
 }

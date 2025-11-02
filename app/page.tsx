@@ -99,7 +99,7 @@ export default function Home() {
     <div className="bg-zinc-50 font-sans dark:bg-black lg:h-screen h-auto">
       <main className="flex flex-col lg:flex-row flex-start items-start gap-4 sm:p-4 p-2 h-full">
         <Activity mode={showSidebar ? "visible" : "hidden"}>
-          <div className="w-full lg:w-[400px] shrink-0 border border-slate-200 rounded-md p-4 h-full flex flex-col justify-between gap-4 overflow-y-scroll max-h-[calc(100vh-32px)]">
+          <div className="w-full lg:w-[400px] shrink-0 border border-slate-200 rounded-md p-4 h-full flex flex-col justify-between gap-4 overflow-y-scroll lg:max-h-[calc(100vh-32px)]">
             <div className="space-y-3">
               <h1 className="text-2xl font-bold leading-tight">TriCharts</h1>
 
