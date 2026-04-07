@@ -17,7 +17,11 @@ import {
 import { Switch } from "@/components/ui/switch"
 import { Textarea } from "@/components/ui/textarea"
 
+type ChartType = "bar" | "surface"
+
 interface SidebarProps {
+  chartType: ChartType
+  setChartType: (chartType: ChartType) => void
   labels: {
     xLabel: string
     yLabel: string
@@ -42,6 +46,8 @@ interface SidebarProps {
   setShowGrid: (showGrid: boolean) => void
   showLabels: boolean
   setShowLabels: (showLabels: boolean) => void
+  surfacePointRadius: number | string
+  setSurfacePointRadius: (radius: number | string) => void
   handleLabelsChange: (value: string) => void
   handleZLabelsChange: (value: string) => void
   colorScheme:
@@ -65,6 +71,8 @@ interface SidebarProps {
 }
 
 export default function Sidebar({
+  chartType,
+  setChartType,
   labels,
   setLabels,
   rawInput,
@@ -77,6 +85,8 @@ export default function Sidebar({
   setShowGrid,
   showLabels,
   setShowLabels,
+  surfacePointRadius,
+  setSurfacePointRadius,
   handleLabelsChange,
   handleZLabelsChange,
   colorScheme,
@@ -95,9 +105,35 @@ export default function Sidebar({
     }
     setBarSpacing(Number(e.target.value))
   }
+  const handleSurfacePointRadiusChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    if (e.target.value === "") {
+      setSurfacePointRadius("")
+      return
+    }
+    setSurfacePointRadius(Number(e.target.value))
+  }
 
   return (
     <aside id="chart-form" className="w-full space-y-3">
+      <Field>
+        <FieldLabel>Chart type</FieldLabel>
+        <FieldContent>
+          <Select
+            value={chartType}
+            onValueChange={(value) => setChartType(value as ChartType)}
+          >
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Select chart type" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="bar">3D bar</SelectItem>
+              <SelectItem value="surface">3D surface</SelectItem>
+            </SelectContent>
+          </Select>
+        </FieldContent>
+      </Field>
       <Field>
         <FieldLabel>Data rows</FieldLabel>
         <FieldContent>
@@ -187,7 +223,7 @@ export default function Sidebar({
       </FieldGroup>
       <FieldGroup className="grid grid-cols-2 gap-2">
         <Field>
-          <FieldLabel>Bar spacing</FieldLabel>
+          <FieldLabel>{chartType === "bar" ? "Bar spacing" : "Point spacing"}</FieldLabel>
           <FieldContent>
             <Input
               type="number"
@@ -245,15 +281,36 @@ export default function Sidebar({
             />
           </FieldContent>
         </Field>
-        <Field>
-          <FieldLabel>Show data labels</FieldLabel>
-          <FieldContent>
-            <Switch
-              checked={showLabels}
-              onCheckedChange={(checked: boolean) => setShowLabels(checked)}
-            />
-          </FieldContent>
-        </Field>
+        {chartType === "bar" ? (
+          <Field>
+            <FieldLabel>Show data labels</FieldLabel>
+            <FieldContent>
+              <Switch
+                checked={showLabels}
+                onCheckedChange={(checked: boolean) => setShowLabels(checked)}
+              />
+            </FieldContent>
+          </Field>
+        ) : (
+          <Field>
+            <FieldLabel>Surface point size</FieldLabel>
+            <FieldContent>
+              <Input
+                type="number"
+                name="surfacePointRadius"
+                value={surfacePointRadius}
+                onChange={handleSurfacePointRadiusChange}
+                step={0.02}
+                min={0.02}
+                max={3}
+                placeholder="Auto"
+              />
+              <p className="text-xs text-muted-foreground mt-1">
+                Leave empty for automatic sizing (world units).
+              </p>
+            </FieldContent>
+          </Field>
+        )}
       </FieldGroup>
     </aside>
   )

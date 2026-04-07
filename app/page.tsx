@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { useState, Activity } from "react"
-import { Bar3DChart } from "tricharts"
+import { Bar3DChart, Surface3DChart } from "tricharts"
 import {
   SquareArrowOutUpRightIcon,
   ArrowLeftToLineIcon,
@@ -16,18 +16,21 @@ import { cn } from "@/lib/utils"
 
 export default function Home() {
   const [showSidebar, setShowSidebar] = useState<boolean>(true)
+  const [chartType, setChartType] = useState<"bar" | "surface">("bar")
   const [rawInput, setRawInput] = useState<string>(
-    ["22, 16, 10, 6, 2", "12, 10, 8, 6, 4"].join("\n")
+    ["22, 16, 10, 6, 2", "12, 10, 8, 6, 4", "10, 8, 6, 4, 2", "8, 6, 12, 2, 1"].join("\n")
   )
   const [data, setData] = useState<number[][]>([
     [22, 16, 10, 6, 2],
     [12, 10, 8, 6, 4],
+    [10, 8, 6, 4, 2],
+    [8, 6, 12, 2, 1],
   ])
   const [rawXLabels, setRawXLabels] = useState<string>(
     ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"].join("\n")
   )
   const [rawZLabels, setRawZLabels] = useState<string>(
-    ["Week 1", "Week 2"].join("\n")
+    ["Week 1", "Week 2", "Week 3", "Week 4"].join("\n")
   )
   const [labels, setLabels] = useState<{
     xLabel: string
@@ -40,11 +43,14 @@ export default function Home() {
     yLabel: "Amount",
     zLabel: "Week",
     xLabels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-    zLabels: ["Week 1", "Week 2"],
+    zLabels: ["Week 1", "Week 2", "Week 3", "Week 4"],
   })
   const [barSpacing, setBarSpacing] = useState<number | string>(1)
   const [showGrid, setShowGrid] = useState<boolean>(true)
   const [showLabels, setShowLabels] = useState<boolean>(true)
+  const [surfacePointRadius, setSurfacePointRadius] = useState<number | string>(
+    ""
+  )
   const [colorScheme, setColorScheme] = useState<
     "blue" | "green" | "red" | "purple" | "orange" | "rainbow" | "random"
   >("blue")
@@ -104,6 +110,8 @@ export default function Home() {
               <h1 className="text-2xl font-bold leading-tight">TriCharts</h1>
 
               <Sidebar
+                chartType={chartType}
+                setChartType={setChartType}
                 labels={labels}
                 setLabels={setLabels}
                 handleLabelsChange={handleLabelsChange}
@@ -118,6 +126,8 @@ export default function Home() {
                 setShowGrid={setShowGrid}
                 showLabels={showLabels}
                 setShowLabels={setShowLabels}
+                surfacePointRadius={surfacePointRadius}
+                setSurfacePointRadius={setSurfacePointRadius}
                 colorScheme={colorScheme}
                 setColorScheme={setColorScheme}
               />
@@ -174,22 +184,45 @@ export default function Home() {
               <p className="text-sm">Show settings</p>
             </div>
           </Activity>
-          <Bar3DChart
-            data={data}
-            xLabel={labels.xLabel}
-            yLabel={showSidebar ? labels.yLabel : "Amount"}
-            zLabel={showSidebar ? labels.zLabel : "Week"}
-            xLabels={
-              showSidebar
-                ? labels.xLabels
-                : ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
-            }
-            zLabels={showSidebar ? labels.zLabels : ["Week 1", "Week 2"]}
-            barSpacing={Number(barSpacing)}
-            showGrid={showGrid}
-            showLabels={showLabels}
-            colorScheme={colorScheme}
-          />
+          {chartType === "bar" ? (
+            <Bar3DChart
+              data={data}
+              xLabel={labels.xLabel}
+              yLabel={showSidebar ? labels.yLabel : "Amount"}
+              zLabel={showSidebar ? labels.zLabel : "Week"}
+              xLabels={
+                showSidebar
+                  ? labels.xLabels
+                  : ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+              }
+              zLabels={showSidebar ? labels.zLabels : ["Week 1", "Week 2"]}
+              barSpacing={Number(barSpacing)}
+              showGrid={showGrid}
+              showLabels={showLabels}
+              colorScheme={colorScheme}
+            />
+          ) : (
+            <Surface3DChart
+              data={data}
+              xLabel={labels.xLabel}
+              yLabel={showSidebar ? labels.yLabel : "Amount"}
+              zLabel={showSidebar ? labels.zLabel : "Week"}
+              xLabels={
+                showSidebar
+                  ? labels.xLabels
+                  : ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+              }
+              zLabels={showSidebar ? labels.zLabels : ["Week 1", "Week 2"]}
+              barSpacing={Number(barSpacing)}
+              showGrid={showGrid}
+              colorScheme={colorScheme}
+              surfacePointRadius={
+                surfacePointRadius === ""
+                  ? undefined
+                  : Number(surfacePointRadius)
+              }
+            />
+          )}
         </div>
       </main>
     </div>
