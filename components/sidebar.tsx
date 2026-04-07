@@ -223,7 +223,7 @@ export default function Sidebar({
       </FieldGroup>
       <FieldGroup className="grid grid-cols-2 gap-2">
         <Field>
-          <FieldLabel>{chartType === "bar" ? "Bar spacing" : "Point spacing"}</FieldLabel>
+          <FieldLabel>Bar spacing</FieldLabel>
           <FieldContent>
             <Input
               type="number"
