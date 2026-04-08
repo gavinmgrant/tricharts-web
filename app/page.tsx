@@ -195,14 +195,10 @@ export default function Home() {
             <Bar3DChart
               data={data}
               xLabel={labels.xLabel}
-              yLabel={showSidebar ? labels.yLabel : "Amount"}
-              zLabel={showSidebar ? labels.zLabel : "Week"}
-              xLabels={
-                showSidebar
-                  ? labels.xLabels
-                  : ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
-              }
-              zLabels={showSidebar ? labels.zLabels : ["Week 1", "Week 2"]}
+              yLabel={labels.yLabel}
+              zLabel={labels.zLabel}
+              xLabels={labels.xLabels}
+              zLabels={labels.zLabels}
               barSpacing={Number(barSpacing)}
               showGrid={showGrid}
               showLabels={showLabels}
@@ -212,14 +208,10 @@ export default function Home() {
             <Surface3DChart
               data={data}
               xLabel={labels.xLabel}
-              yLabel={showSidebar ? labels.yLabel : "Amount"}
-              zLabel={showSidebar ? labels.zLabel : "Week"}
-              xLabels={
-                showSidebar
-                  ? labels.xLabels
-                  : ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
-              }
-              zLabels={showSidebar ? labels.zLabels : ["Week 1", "Week 2"]}
+              yLabel={labels.yLabel}
+              zLabel={labels.zLabel}
+              xLabels={labels.xLabels}
+              zLabels={labels.zLabels}
               barSpacing={Number(barSpacing)}
               showGrid={showGrid}
               colorScheme={colorScheme}
