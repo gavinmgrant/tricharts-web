@@ -45,7 +45,7 @@ export default function Home() {
     xLabels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
     zLabels: ["Week 1", "Week 2", "Week 3", "Week 4"],
   })
-  const [barSpacing, setBarSpacing] = useState<number | string>(1)
+  const [gridSpacing, setGridSpacing] = useState<number | string>(1)
   const [showGrid, setShowGrid] = useState<boolean>(true)
   const [showLabels, setShowLabels] = useState<boolean>(true)
   const [surfacePointRadius, setSurfacePointRadius] = useState<number | string>(
@@ -129,8 +129,8 @@ export default function Home() {
                 handleRawChange={handleRawChange}
                 rawXLabels={rawXLabels}
                 rawZLabels={rawZLabels}
-                barSpacing={barSpacing}
-                setBarSpacing={setBarSpacing}
+                gridSpacing={gridSpacing}
+                setGridSpacing={setGridSpacing}
                 showGrid={showGrid}
                 setShowGrid={setShowGrid}
                 showLabels={showLabels}
@@ -199,7 +199,7 @@ export default function Home() {
               zLabel={labels.zLabel}
               xLabels={labels.xLabels}
               zLabels={labels.zLabels}
-              barSpacing={Number(barSpacing)}
+              gridSpacing={Number(gridSpacing)}
               showGrid={showGrid}
               showLabels={showLabels}
               colorScheme={colorScheme}
@@ -212,8 +212,9 @@ export default function Home() {
               zLabel={labels.zLabel}
               xLabels={labels.xLabels}
               zLabels={labels.zLabels}
-              barSpacing={Number(barSpacing)}
+              gridSpacing={Number(gridSpacing)}
               showGrid={showGrid}
+              showLabels={showLabels}
               colorScheme={colorScheme}
               surfacePointRadius={
                 surfacePointRadius === ""

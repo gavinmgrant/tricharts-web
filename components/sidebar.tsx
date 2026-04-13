@@ -40,8 +40,8 @@ interface SidebarProps {
   handleRawChange: (value: string) => void
   rawXLabels: string
   rawZLabels: string
-  barSpacing: number | string
-  setBarSpacing: (spacing: number | string) => void
+  gridSpacing: number | string
+  setGridSpacing: (spacing: number | string) => void
   showGrid: boolean
   setShowGrid: (showGrid: boolean) => void
   showLabels: boolean
@@ -51,13 +51,13 @@ interface SidebarProps {
   handleLabelsChange: (value: string) => void
   handleZLabelsChange: (value: string) => void
   colorScheme:
-    | "blue"
-    | "green"
-    | "red"
-    | "purple"
-    | "orange"
-    | "rainbow"
-    | "random"
+  | "blue"
+  | "green"
+  | "red"
+  | "purple"
+  | "orange"
+  | "rainbow"
+  | "random"
   setColorScheme: (
     scheme:
       | "blue"
@@ -79,8 +79,8 @@ export default function Sidebar({
   handleRawChange,
   rawXLabels,
   rawZLabels,
-  barSpacing,
-  setBarSpacing,
+  gridSpacing,
+  setGridSpacing,
   showGrid,
   setShowGrid,
   showLabels,
@@ -98,12 +98,12 @@ export default function Sidebar({
       [e.target.name]: e.target.value,
     })
   }
-  const handleBarSpacingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleGridSpacingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value === "") {
-      setBarSpacing("")
+      setGridSpacing("")
       return
     }
-    setBarSpacing(Number(e.target.value))
+    setGridSpacing(Number(e.target.value))
   }
   const handleSurfacePointRadiusChange = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -223,13 +223,13 @@ export default function Sidebar({
       </FieldGroup>
       <FieldGroup className="grid grid-cols-2 gap-2">
         <Field>
-          <FieldLabel>Bar spacing</FieldLabel>
+          <FieldLabel>Grid spacing</FieldLabel>
           <FieldContent>
             <Input
               type="number"
-              name="barSpacing"
-              value={barSpacing}
-              onChange={handleBarSpacingChange}
+              name="gridSpacing"
+              value={gridSpacing}
+              onChange={handleGridSpacingChange}
               step={0.25}
               min={0}
               max={10}
@@ -245,13 +245,13 @@ export default function Sidebar({
               onValueChange={(value) =>
                 setColorScheme(
                   value as
-                    | "blue"
-                    | "green"
-                    | "red"
-                    | "purple"
-                    | "orange"
-                    | "rainbow"
-                    | "random"
+                  | "blue"
+                  | "green"
+                  | "red"
+                  | "purple"
+                  | "orange"
+                  | "rainbow"
+                  | "random"
                 )
               }
             >
@@ -281,17 +281,16 @@ export default function Sidebar({
             />
           </FieldContent>
         </Field>
-        {chartType === "bar" ? (
-          <Field>
-            <FieldLabel>Show data labels</FieldLabel>
-            <FieldContent>
-              <Switch
-                checked={showLabels}
-                onCheckedChange={(checked: boolean) => setShowLabels(checked)}
-              />
-            </FieldContent>
-          </Field>
-        ) : (
+        <Field>
+          <FieldLabel>Show data labels</FieldLabel>
+          <FieldContent>
+            <Switch
+              checked={showLabels}
+              onCheckedChange={(checked: boolean) => setShowLabels(checked)}
+            />
+          </FieldContent>
+        </Field>
+        {chartType === "surface" && (
           <Field>
             <FieldLabel>Surface point size</FieldLabel>
             <FieldContent>

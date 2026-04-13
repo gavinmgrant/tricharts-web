@@ -57,8 +57,8 @@ importers:
         specifier: ^0.180.0
         version: 0.180.0
       tricharts:
-        specifier: ^0.2.2
-        version: 0.2.2(@react-three/drei@10.7.6(@react-three/fiber@9.4.0(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(three@0.180.0))(@types/react@19.2.2)(@types/three@0.180.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(three@0.180.0))(@react-three/fiber@9.4.0(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(three@0.180.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(three@0.180.0)
+        specifier: ^0.2.3
+        version: 0.2.3(@react-three/drei@10.7.6(@react-three/fiber@9.4.0(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(three@0.180.0))(@types/react@19.2.2)(@types/three@0.180.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(three@0.180.0))(@react-three/fiber@9.4.0(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(three@0.180.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(three@0.180.0)
       zod:
         specifier: ^4.1.12
         version: 4.1.12
@@ -2472,8 +2472,8 @@ packages:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
     engines: {node: '>=8.0'}
 
-  tricharts@0.2.2:
-    resolution: {integrity: sha512-oGnS8+hq3N37FQn/k5d+WUQnVGgjrE7wQ7mJae/dLsIUqEEHXEe+HbHbcFI/ppylet0K9Mc3U1HRJU1W5Rpmdg==}
+  tricharts@0.2.3:
+    resolution: {integrity: sha512-VpmOlfmvoCj0rp01EuwDJ1S6Dt3zDL61nm6DbmUzueGkT2MhLkVFoA6fme6mdsGu4/5WYzyghBbk89uvkoPkxg==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       '@react-three/drei': '>=9.0.0'
@@ -5199,7 +5199,7 @@ snapshots:
     dependencies:
       is-number: 7.0.0
 
-  tricharts@0.2.2(@react-three/drei@10.7.6(@react-three/fiber@9.4.0(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(three@0.180.0))(@types/react@19.2.2)(@types/three@0.180.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(three@0.180.0))(@react-three/fiber@9.4.0(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(three@0.180.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(three@0.180.0):
+  tricharts@0.2.3(@react-three/drei@10.7.6(@react-three/fiber@9.4.0(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(three@0.180.0))(@types/react@19.2.2)(@types/three@0.180.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(three@0.180.0))(@react-three/fiber@9.4.0(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(three@0.180.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(three@0.180.0):
     dependencies:
       '@react-three/drei': 10.7.6(@react-three/fiber@9.4.0(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(three@0.180.0))(@types/react@19.2.2)(@types/three@0.180.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(three@0.180.0)
       '@react-three/fiber': 9.4.0(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(three@0.180.0)
