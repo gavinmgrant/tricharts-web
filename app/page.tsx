@@ -174,21 +174,21 @@ export default function Home() {
         >
           {showSidebar ? (
             <div
-              className="flex items-center gap-1.5 absolute top-2 left-2 sm:left-4 sm:top-4 z-10 cursor-pointer px-3 py-2 bg-zinc-100 rounded-md hover:bg-zinc-200 transition-colors"
+              className="group flex items-center gap-1.5 absolute top-2 left-2 sm:left-4 sm:top-4 z-10 cursor-pointer px-3 py-2 bg-zinc-100 rounded-md hover:bg-zinc-200 transition-colors"
               onClick={() => setShowSidebar(false)}
             >
-              <ArrowLeftToLineIcon className="w-4 h-4 hidden lg:block" />
-              <ArrowUpToLineIcon className="w-4 h-4 block lg:hidden" />
-              <p className="text-sm">Hide settings</p>
+              <ArrowLeftToLineIcon className="w-5 h-5 hidden lg:block" />
+              <ArrowUpToLineIcon className="w-5 h-5 block lg:hidden" />
+              <p className="text-sm hidden group-hover:block animate-fade-in">Hide settings</p>
             </div>
           ) : (
             <div
-              className="flex items-center gap-1.5 absolute top-2 left-2 sm:left-4 sm:top-4 z-10 cursor-pointer px-3 py-2 bg-zinc-100 rounded-md hover:bg-zinc-200 transition-colors"
+              className="group flex items-center gap-1.5 absolute top-2 left-2 sm:left-4 sm:top-4 z-10 cursor-pointer px-3 py-2 bg-zinc-100 rounded-md hover:bg-zinc-200 transition-colors"
               onClick={() => setShowSidebar(true)}
             >
-              <ArrowRightToLineIcon className="w-4 h-4 hidden lg:block" />
-              <ArrowDownToLineIcon className="w-4 h-4 block lg:hidden" />
-              <p className="text-sm">Show settings</p>
+              <ArrowRightToLineIcon className="w-5 h-5 hidden lg:block" />
+              <ArrowDownToLineIcon className="w-5 h-5 block lg:hidden" />
+              <p className="text-sm hidden group-hover:block animate-fade-in">Show settings</p>
             </div>
           )}
           {chartType === "bar" ? (
