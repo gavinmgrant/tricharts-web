@@ -116,7 +116,27 @@ export default function Home() {
         >
           <div className="w-full lg:w-[400px] border border-slate-200 rounded-md p-4 h-full flex flex-col justify-between gap-4 overflow-y-scroll lg:max-h-[calc(100vh-32px)]">
             <div className="space-y-3">
-              <h1 className="text-2xl font-bold leading-tight">TriCharts</h1>
+              <div className="flex items-center justify-between gap-2">
+                <h1 className="text-2xl font-bold leading-tight">TriCharts</h1>
+                <div className="flex items-center gap-2 text-sm">
+                  <Link
+                    href="https://www.npmjs.com/package/tricharts"
+                    target="_blank"
+                    className="flex items-center gap-1.5 bg-zinc-100 rounded-md px-3 py-2 cursor-pointer hover:bg-zinc-200 transition-colors"
+                  >
+                    <p>npm</p>
+                    <SquareArrowOutUpRightIcon className="size-4" />
+                  </Link>
+                  <Link
+                    href="https://github.com/gavinmgrant/tricharts"
+                    target="_blank"
+                    className="flex items-center gap-1.5 bg-zinc-100 rounded-md px-3 py-2 cursor-pointer hover:bg-zinc-200 transition-colors"
+                  >
+                    <p>GitHub</p>
+                    <SquareArrowOutUpRightIcon className="size-4" />
+                  </Link>
+                </div>
+              </div>
 
               <Sidebar
                 chartType={chartType}
@@ -140,29 +160,6 @@ export default function Home() {
                 colorScheme={colorScheme}
                 setColorScheme={setColorScheme}
               />
-            </div>
-
-            <div className="grid grid-cols-2 gap-2 text-sm">
-              <Link
-                href="https://www.npmjs.com/package/tricharts"
-                target="_blank"
-                className="w-full"
-              >
-                <div className="flex items-center justify-between bg-zinc-100 rounded-md px-3 py-2 cursor-pointer hover:bg-zinc-200 transition-colors">
-                  <p>npm package</p>
-                  <SquareArrowOutUpRightIcon className="size-4" />
-                </div>
-              </Link>
-              <Link
-                href="https://github.com/gavinmgrant/tricharts"
-                target="_blank"
-                className="w-full"
-              >
-                <div className="flex items-center justify-between bg-zinc-100 rounded-md px-3 py-2 cursor-pointer hover:bg-zinc-200 transition-colors">
-                  <p>GitHub repository</p>
-                  <SquareArrowOutUpRightIcon className="size-4" />
-                </div>
-              </Link>
             </div>
           </div>
         </div>
